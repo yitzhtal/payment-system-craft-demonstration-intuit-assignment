@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -68,5 +69,22 @@ public class Payment implements Serializable {
 
     public void setPaymentMethodId(String paymentMethodId) {
         this.paymentMethodId = paymentMethodId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Payment payment = (Payment) o;
+        return Objects.equals(amount, payment.amount) &&
+                Objects.equals(currency, payment.currency) &&
+                Objects.equals(userId, payment.userId) &&
+                Objects.equals(payeeId, payment.payeeId) &&
+                Objects.equals(paymentMethodId, payment.paymentMethodId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount, currency, userId, payeeId, paymentMethodId);
     }
 }
