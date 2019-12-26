@@ -70,14 +70,18 @@ public class PaymentService {
             return Response.status(400).entity("Please provide all mandatory inputs").build();
         }
 
-        ConnectionFactory factory = new ConnectionFactory();
-        //docker run -d --hostname rab-con --name rab-con -p 8081:15672 -e RABBITMQ_DEFAULT_USER=sbseg -e RABBITMQ_DEFAULT_PASS=ftw -e RABBITMQ_DEFAULT_VHOST=my_vhost rabbitmq:3-management
+        //docker run -d --hostname rabbit-container --name rabbit-container -p 8081:15672 -e RABBITMQ_DEFAULT_USER=sbseg -e RABBITMQ_DEFAULT_PASS=ftw -e RABBITMQ_DEFAULT_VHOST=my_vhost rabbitmq:3-management
+        //docker run -d --hostname rabbit-container --name rabbit-container -p 8081:15672 rabbitmq:3-management
+        //go to localhost:8081 and see UI management tool
         try {
-            factory.setUsername("sbseg");
-            factory.setPassword("ftw");
-            factory.setVirtualHost("my_vhost");
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setUsername("guest");
+            factory.setPassword("guest");
+            factory.setVirtualHost("/");
             factory.setHost("localhost");
-            factory.setPort(8081);
+            factory.setPort(5672);
+            Connection newConnection = factory.newConnection();
+
             logger.info("createPayment() -  create new connection");
             Connection connection = factory.newConnection();
             logger.info("createPayment() -  create channel");
