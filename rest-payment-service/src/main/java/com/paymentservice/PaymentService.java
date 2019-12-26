@@ -3,39 +3,32 @@ package com.paymentservice;
 import beans.Payee;
 import beans.Payment;
 import beans.PaymentMethod;
-import com.rabbitmq.client.ConnectionFactory;
+import com.google.gson.Gson;
 import enums.PaymentMethodType;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.Channel;
-import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
-
-import javax.ws.rs.Consumes;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import rabbitmq.RabbitMQService;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
- 
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.UUID;
+
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "payments")
 @Path("/payment-service")
 public class PaymentService {
-    private static Map<Integer, Payment> DB = new HashMap<>();
 
     @Autowired
-    private LoggingController logger;
+    LoggingController logger;
+
+    @Autowired
+    private RabbitMQService rabbitMQService;
+
+    @Autowired
+    Gson gson;
 
     @GET
     @Path("/payment-methods")
@@ -70,28 +63,16 @@ public class PaymentService {
             return Response.status(400).entity("Please provide all mandatory inputs").build();
         }
 
-        //docker run -d --hostname rabbit-container --name rabbit-container -p 8081:15672 -e RABBITMQ_DEFAULT_USER=sbseg -e RABBITMQ_DEFAULT_PASS=ftw -e RABBITMQ_DEFAULT_VHOST=my_vhost rabbitmq:3-management
-        //docker run -d --hostname rabbit-container --name rabbit-container -p 8081:15672 rabbitmq:3-management
-        //go to localhost:8081 and see UI management tool
-        try {
-            ConnectionFactory factory = new ConnectionFactory();
-            factory.setUsername("guest");
-            factory.setPassword("guest");
-            factory.setVirtualHost("/");
-            factory.setHost("localhost");
-            factory.setPort(5672);
-            Connection newConnection = factory.newConnection();
+        String userId = payment.getUserId();
+        String payeeId = payment.getPayeeId();
+        String paymentMethodId = payment.getPaymentMethodId();
 
-            logger.info("createPayment() -  create new connection");
-            Connection connection = factory.newConnection();
-            logger.info("createPayment() -  create channel");
-            Channel channel = connection.createChannel();
-            channel.queueDeclare("payments-queue", false, false, false, null);
-            logger.info("createPayment() -  declaring queue");
-            String message = "Hello World!";
-            logger.info("createPayment() -  publishing message");
-            channel.basicPublish("", "payments-queue", null, message.getBytes());
-            logger.info("createPayment() -  message sent to queue: " + message + ".");
+        payment.setUserId(UUID.fromString(userId).toString());
+        payment.setPayeeId(UUID.fromString(payeeId).toString());
+        payment.setPaymentMethodId(UUID.fromString(paymentMethodId).toString());
+
+        try {
+            rabbitMQService.publishMessage(gson.toJson(payment));
         } catch(Exception e) {
             logger.info("createPayment() -  failed in connecting to rabbitmq");
             return Response.status(500).build();
@@ -100,4 +81,5 @@ public class PaymentService {
         logger.info("createPayment() - ended successfully");
         return Response.status(201).build();
     }
+
 }

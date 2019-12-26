@@ -2,11 +2,12 @@ package com.paymentservice;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
- 
+
+
 @Component
-public class PaymentSystemCraftDemonstrationConfig extends ResourceConfig
+public class Config extends ResourceConfig
 {
-    public PaymentSystemCraftDemonstrationConfig()
+    public Config()
     {
         register(PaymentService.class);
     }
