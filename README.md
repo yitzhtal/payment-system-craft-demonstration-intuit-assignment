@@ -9,6 +9,7 @@
 - ```chmod +x terminate.sh```.
 
 2) Run the RabbitMQ Message queue using the command: ```./run-rabbitmq.sh```.
+Verify you are able to visit the RabbitMQ UI Management Tool here: http://localhost:8081.
 
 3) Run the Rest Payment Service using the command: ```./run-rest-payment-service.sh```.
 
