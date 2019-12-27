@@ -2,7 +2,7 @@
 
 # How to run the project?
 
-1) First, provide permissions to the following shell running scripts:
+1) Clone the project to your local directory: ```git clone https://github.com/talitz/Payment-System-Craft-Demonstration-Intuit-Assignment.git```, then cd into the project and provide permissions to the following shell running scripts:
 - ```chmod +x run-rabbitmq.sh```
 - ```chmod +x run-rest-payment-service.sh```
 - ```chmod +x run-risk-engine.sh```
