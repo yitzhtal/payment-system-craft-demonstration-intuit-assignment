@@ -2,7 +2,7 @@
 
 # How to run the project?
 
-1) First, provide permissions using ```chmod +x script.sh``` to all shell script files:
+1) First, provide permissions to the following shell running scripts:
 - ```chmod +x run-rabbitmq.sh```
 - ```chmod +x run-rest-payment-service.sh```
 - ```chmod +x run-risk-engine.sh```
