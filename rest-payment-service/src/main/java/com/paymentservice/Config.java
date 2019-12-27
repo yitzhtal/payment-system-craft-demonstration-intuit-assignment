@@ -9,6 +9,6 @@ public class Config extends ResourceConfig
 {
     public Config()
     {
-        register(PaymentService.class);
+        register(RESTPaymentService.class);
     }
 }

@@ -6,8 +6,11 @@ import beans.PaymentMethod;
 import com.google.gson.Gson;
 import enums.PaymentMethodType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ResponseBody;
 import rabbitmq.RabbitMQService;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,10 +19,11 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.UUID;
 
+@CrossOrigin("http://localhost:8080")
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "payments")
 @Path("/payment-service")
-public class PaymentService {
+public class RESTPaymentService {
 
     @Autowired
     LoggingController logger;
@@ -55,21 +59,20 @@ public class PaymentService {
     }
      
     @POST
-    @Consumes("application/json")
+    @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
     @Path("/create-payment")
-    public Response createPayment(Payment payment) {
+    public Response createPayment(@FormParam("amount") long amount, @FormParam("currency") String currency, @FormParam("userId") String userId,
+                                  @FormParam("payeeId") String payeeId, @FormParam("paymentMethodId") String paymentMethodId) {
         logger.info("createPayment() - was called");
-        if(payment.getAmount() == null || payment.getCurrency() == null || payment.getPayeeId()  == null || payment.getPaymentMethodId() == null || payment.getUserId() == null) {
+        if(amount < 0 || currency == null || userId  == null || payeeId == null || paymentMethodId == null) {
             return Response.status(400).entity("Please provide all mandatory inputs").build();
         }
+        Payment payment = new Payment(amount,currency, userId, payeeId,  paymentMethodId);
 
-        String userId = payment.getUserId();
-        String payeeId = payment.getPayeeId();
-        String paymentMethodId = payment.getPaymentMethodId();
-
-        payment.setUserId(UUID.fromString(userId).toString());
-        payment.setPayeeId(UUID.fromString(payeeId).toString());
-        payment.setPaymentMethodId(UUID.fromString(paymentMethodId).toString());
+        //check this GUID
+        payment.setUserId(UUID.randomUUID().toString());
+        payment.setPayeeId(UUID.randomUUID().toString());
+        payment.setPaymentMethodId(UUID.randomUUID().toString());
 
         try {
             rabbitMQService.publishMessage(gson.toJson(payment));
@@ -79,7 +82,12 @@ public class PaymentService {
         }
 
         logger.info("createPayment() - ended successfully");
-        return Response.status(201).build();
+        return Response.ok()
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS, HEAD")
+                .header("Access-Control-Allow-Headers", "Content-Type,Accept,X-Requested-With,authorization")
+                .header("Access-Control-Allow-Credentials", true)
+                .build();
     }
 
 }

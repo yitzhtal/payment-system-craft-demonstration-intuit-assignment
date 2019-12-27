@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Payment System Craft Demonstration - Intuit Assignment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+
+                        <!-- CREDIT CARD FORM STARTS HERE -->
+                        <div class="panel panel-default credit-card-box">
+                            <div class="panel-heading display-table">
+                                <div class="row display-tr">
+                                    <h3 class="panel-title display-td">Intuit's Payment System</h3>
+                                    <div class="display-td">
+                                        <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" id="payment-form" action="http://localhost:8080/payment-service/create-payment" method="POST" onsubmit="go();">
+                                    <div class="row">  
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <label for="cardNumber">Payment Method:</label>
+                                                <div class="input-group">
+                                                    <input type="tel" class="form-control" name="paymentMethodId" placeholder="Valid Card Number" autocomplete="cc-number" required autofocus />
+                                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7 col-md-7">
+                                            <div class="form-group">
+                                                <label for="cardExpiry"><span class="hidden-xs">Full Name:</span>
+                                                    <input type="tel" class="form-control" name="userId" id="userId" placeholder="Who is paying?" required />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cardExpiry"><span class="hidden-xs">Amount:</span>
+                                                    <input type="tel" class="form-control" name="amount" id="amount" placeholder="Valid Number" required />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-5 col-md-5 pull-right">
+                                            <div class="form-group">
+                                                <label for="cardCVC">Currency:</label>
+                                                <input type="tel" class="form-control" name="currency" id="currency" placeholder="USD/EUR/..." required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="form-group">
+                                                <label for="couponCode">Whom:</label>
+                                                <input type="text" class="form-control" name="payeeId" id="payeeId" placeholder="Who are you paying to?" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <button class="btn btn-success btn-lg btn-block" type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="display:none;">
+                                        <div class="col-xs-12">
+                                            <p class="payment-errors"></p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+    <!-- If you're using Stripe for payments -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script>
+function show(shown, hidden) {
+  document.getElementById(shown).style.display='block';
+  document.getElementById(hidden).style.display='none';
+  return false;
+}
+</script>
+</body>
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/1.2.3/jquery.payment.min.js'></script>
+<script src="./script.js"></script>
+
+</body>
+
+</html>

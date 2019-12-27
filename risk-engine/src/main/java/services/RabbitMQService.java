@@ -1,4 +1,4 @@
-package rabbitmq;
+package services;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -31,7 +31,6 @@ public class RabbitMQService implements InitializingBean, DisposableBean {
     public void afterPropertiesSet() throws Exception {
         logger.info("init() -  initalizing RabbitMQService");
         try {
-            if(factory == null && connection == null) { //no need for more then one connection
                 factory = new ConnectionFactory();
                 factory.setUsername(userName);
                 factory.setPassword(password);
@@ -47,7 +46,6 @@ public class RabbitMQService implements InitializingBean, DisposableBean {
 
                 logger.info("init() -  declaring queue: " +queueName);
                 channel.queueDeclare(queueName, false, false, false, null);
-            }
         } catch (Exception e) {
             logger.info("init() -  failed initializing RabbitMQService bean");
         }

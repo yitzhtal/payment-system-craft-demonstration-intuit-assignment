@@ -25,6 +25,14 @@ public class Payment implements Serializable {
     @XmlElement(name = "paymentMethodId")
     private String paymentMethodId;
 
+    public Payment(Long amount, String currency, String userId, String payeeId, String paymentMethodId) {
+        this.amount = amount;
+        this.currency = currency;
+        this.userId = userId;
+        this.payeeId = payeeId;
+        this.paymentMethodId = paymentMethodId;
+    }
+
     public Long getAmount() {
         return amount;
     }

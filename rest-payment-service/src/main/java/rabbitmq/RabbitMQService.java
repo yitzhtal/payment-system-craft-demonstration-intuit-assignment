@@ -50,6 +50,7 @@ public class RabbitMQService implements InitializingBean, DisposableBean {
 
             logger.info("afterPropertiesSet() -  creating channel");
             channel = connection.createChannel();
+            channel.confirmSelect(); //enable publishing messages with confirmation
 
             logger.info("afterPropertiesSet() -  declaring queue: " +queueName);
             channel.queueDeclare(queueName, false, false, false, null);
@@ -62,7 +63,7 @@ public class RabbitMQService implements InitializingBean, DisposableBean {
         logger.info("publishMessage() -  publishing message");
         try {
             channel.basicPublish("", queueName, null, message.getBytes());
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.info("publishMessage() -  failed publishing message");
         }
         logger.info("publishMessage() -  message sent to queue: " + message + ".");
