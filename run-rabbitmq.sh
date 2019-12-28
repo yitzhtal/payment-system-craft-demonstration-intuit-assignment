@@ -1,4 +1,3 @@
-#!/bin/sh
 echo "Running RabbitMQ for communication between the risk-engine and the rest-payment-service"
 docker stop rabbit-co
 docker rm rabbit-co
