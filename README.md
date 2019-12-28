@@ -4,7 +4,7 @@
 
 Prerequisites: Docker, Java and Maven installed.
 
-1) Clone the project to your local directory: ```git clone https://github.com/talitz/Payment-System-Craft-Demonstration-Intuit-Assignment.git```, then cd into the project and provide permissions to the following shell running scripts:
+1) Clone the project to your local directory:</br> ```git clone https://github.com/talitz/Payment-System-Craft-Demonstration-Intuit-Assignment.git```</br>Now cd into the project and provide permissions to the following shell running scripts:
 - ```chmod +x *.sh```.
 
 2) Run the RabbitMQ Message queue *first* using the command: ```sudo ./run-rabbitmq.sh```, provide your password after running the command.
