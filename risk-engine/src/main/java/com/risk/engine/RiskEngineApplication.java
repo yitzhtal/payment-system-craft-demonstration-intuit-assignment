@@ -1,6 +1,8 @@
 package com.risk.engine;
 import beans.Payment;
+import beans.ProcessedPayment;
 import com.google.gson.Gson;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,15 +12,19 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import services.DBService;
 import services.RabbitMQService;
+import services.RiskEngineService;
 
 import java.util.Arrays;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @SpringBootApplication(scanBasePackages={"services","com.risk.engine"})
-public class RiskEngineApplication implements CommandLineRunner {
+public class RiskEngineApplication implements CommandLineRunner, InitializingBean {
 
 	@Autowired
 	DBService dataBaseService;
+
+	@Autowired
+	RiskEngineService riskEngineService;
 
 	@Autowired
 	RabbitMQService rabbitMQService;
@@ -33,27 +39,30 @@ public class RiskEngineApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... strings) throws Exception {
-		rabbitMQService.consumeMessage((consumerTag, delivery) -> {
+	public void afterPropertiesSet() throws Exception {
+		rabbitMQService.registerCallbackToConsumeMessage((consumerTag, delivery) -> {
 			String message = new String(delivery.getBody(), "UTF-8");
-			Payment payment = gson.fromJson(message, Payment.class);
 			logger.info("Consumed message: '" + message + "'");
-			//analyze payment here!
+
+			Payment payment = gson.fromJson(message, Payment.class);
+
+			//analyzing the risk for this payment, returns a ProcessedPayment object with risk score and approved/not decision
+			logger.info("Analyzing risk...");
+			ProcessedPayment processedPayment = riskEngineService.analyze(payment);
+
 			logger.info("Inserting payment record after analysis");
+			dataBaseService.getJdbcTemplate().batchUpdate("INSERT INTO processed_payments(amount, currency, userId, payeeId, paymentMethodId, riskScore, approved) " +
+					"VALUES ('" + processedPayment.getAmount() + "','" + processedPayment.getCurrency() + "','" + processedPayment.getUserId() +
+					"','" + processedPayment.getPayeeId() + "','" + processedPayment.getPaymentMethodId() + "','"+processedPayment.getRiskScore()+"','"+processedPayment.isApproved()+"')");
 
-			Long amount = payment.getAmount();
-			String currency = payment.getCurrency();
-			String userId = payment.getUserId();
-			String payeeId = payment.getPayeeId();
-			String paymentMethodId = payment.getPaymentMethodId();
-			SqlParameterSource[] batch = SqlParameterSourceUtils.createBatch(Arrays.asList(amount,currency,userId,payeeId,paymentMethodId));
-
-			dataBaseService.getJdbcTemplate().batchUpdate("INSERT INTO processed_payments(amount, currency, userId, payeeId, paymentMethodId) " +
-					"VALUES ('" + amount + "','" + currency + "','" + userId + "','" + payeeId + "','" + paymentMethodId + "')");
-
+			logger.info("Current Database:");
 			dataBaseService.getAllTableRows().stream().forEach(row -> logger.info(((Object) row).toString()));
 		});
+	}
 
+	@Override
+	public void run(String... strings){
+		logger.info("RiskEngineApplication is running...");
 	}
 
 }

@@ -1,5 +1,5 @@
 #!/bin/sh
-
+kill -9 $(lsof -t -i:8087)
 echo "Build & Run risk-engine"
 cd risk-engine
 mvn clean install

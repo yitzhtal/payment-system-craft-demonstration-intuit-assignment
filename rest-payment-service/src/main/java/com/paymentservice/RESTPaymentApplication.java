@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 
-@SpringBootApplication(scanBasePackages={"com.paymentservice","rabbitmq"})
-public class RestPaymentServiceApplication extends SpringBootServletInitializer {
+@SpringBootApplication(scanBasePackages={"com.paymentservice", "services","utils"})
+public class RESTPaymentApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
-        SpringApplication.run(RestPaymentServiceApplication.class,args);
+        SpringApplication.run(RESTPaymentApplication.class,args);
     }
 }

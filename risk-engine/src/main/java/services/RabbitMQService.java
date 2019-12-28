@@ -51,7 +51,7 @@ public class RabbitMQService implements InitializingBean, DisposableBean {
         }
     }
 
-    public void consumeMessage(DeliverCallback deliverCallback) {
+    public void registerCallbackToConsumeMessage(DeliverCallback deliverCallback) {
         logger.info("consumeMessage() -  started");
         try {
             channel.basicConsume(queueName, true, deliverCallback, consumerTag -> { });
