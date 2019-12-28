@@ -9,7 +9,7 @@ import org.springframework.util.StringUtils;
 import javax.ws.rs.core.Response;
 
 @Component
-public class RESTPaymentServiceUtils {
+public class RESTPaymentControllerUtils {
 
     @Autowired
     LoggingController logger;

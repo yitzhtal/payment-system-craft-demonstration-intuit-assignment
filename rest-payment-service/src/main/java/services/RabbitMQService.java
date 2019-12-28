@@ -1,6 +1,7 @@
 package services;
 
 import com.paymentservice.LoggingController;
+import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -49,7 +50,11 @@ public class RabbitMQService implements InitializingBean, DisposableBean {
             logger.info("afterPropertiesSet() -  creating channel");
             channel = connection.createChannel();
             channel.confirmSelect(); //enable publishing messages with confirmation
-
+            channel.addConfirmListener((sequenceNumber, multiple) -> {
+                logger.info("Message was confirmed");
+            }, (sequenceNumber, multiple) -> {
+                logger.info("Message WAS NOT confirmed");
+            });
             logger.info("afterPropertiesSet() -  declaring queue: " +queueName);
             channel.queueDeclare(queueName, false, false, false, null);
         } catch (Exception e) {

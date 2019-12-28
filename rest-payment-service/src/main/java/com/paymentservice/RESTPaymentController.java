@@ -6,13 +6,10 @@ import beans.PaymentMethod;
 import com.google.gson.Gson;
 import enums.PaymentMethodType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import services.RabbitMQService;
-import utils.RESTPaymentServiceUtils;
+import utils.RESTPaymentControllerUtils;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -24,15 +21,17 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-//@CrossOrigin("http://localhost:8080")
-//@XmlAccessorType(XmlAccessType.NONE)
-//@XmlRootElement(name = "payments")
 @RestController
-@RequestMapping("/payment-service")
+@RequestMapping(value="/payment-service")
+@CrossOrigin("http://localhost:8080")
+@XmlAccessorType(XmlAccessType.NONE)
+@XmlRootElement(name = "payments")
+@Path("/payment-service")
+@Controller
 public class RESTPaymentController {
 
     @Autowired
-    RESTPaymentServiceUtils restPaymentServiceUtils;
+    RESTPaymentControllerUtils restPaymentControllerUtils;
 
     @Autowired
     LoggingController logger;
@@ -43,19 +42,27 @@ public class RESTPaymentController {
     @Autowired
     Gson gson;
 
-    @PostMapping(path="/create-payment", consumes = MediaType.APPLICATION_FORM_URLENCODED)
+
+    @POST
+    @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
+    @Path("/create-payment")
+    @PostMapping(value="/create-payment", consumes = MediaType.APPLICATION_FORM_URLENCODED)
     public Response createPayment(@FormParam("amount") Long amount, @FormParam("currency") String currency, @FormParam("userId") String userId, @FormParam("payeeId") String payeeId,
                                   @FormParam("paymentMethodId") String paymentMethodId) {
         logger.info("createPayment() - was called");
-        if(!restPaymentServiceUtils.isAllFieldsNotEmpty(amount,currency,userId,payeeId,paymentMethodId)) {
+
+        logger.info("createPayment() - verifying all fields are not empty");
+        if(!restPaymentControllerUtils.isAllFieldsNotEmpty(amount,currency,userId,payeeId,paymentMethodId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide all mandatory inputs.").build();
         }
 
-        if(!restPaymentServiceUtils.isSupportedCurrency(currency)) {
+        logger.info("createPayment() - verifying the currency received is supported");
+        if(!restPaymentControllerUtils.isSupportedCurrency(currency)) {
             return Response.status(Response.Status.NOT_ACCEPTABLE).entity("The currency you entered is not supported at the moment.").build();
         }
 
-        if(!restPaymentServiceUtils.isPaymentMethodValid(paymentMethodId)) {
+        logger.info("createPayment() - verifying the payment methods is valid");
+        if(!restPaymentControllerUtils.isPaymentMethodValid(paymentMethodId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity("The payment method you entered is not valid.").build();
         }
 
@@ -67,10 +74,11 @@ public class RESTPaymentController {
         payment.setPaymentMethodId(UUID.randomUUID().toString());
 
         try {
+            logger.info("createPayment() - publishing the message");
             rabbitMQService.publishMessage(gson.toJson(payment));
         } catch(Exception e) {
             logger.info("createPayment() -  failed in connecting to services");
-            return Response.status(500).entity("Connection failure. Please try again.").build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Connection failure. Please try again.").build();
         }
 
         logger.info("createPayment() - ended successfully");
@@ -83,7 +91,10 @@ public class RESTPaymentController {
                 .build();
     }
 
-    @GetMapping(path="/payment-methods", produces = "application/json")
+    @GetMapping(value = "/payment-methods")
+    @Produces("application/json")
+    @Path("/payment-methods")
+    @GET
     public String getAllPaymentMethods() throws URISyntaxException {
         logger.info("getAllPaymentMethods() was called");
         PaymentMethod first = new PaymentMethod(PaymentMethodType.BANK_ACCOUNT, "Chace Checking Account","*1567");
@@ -93,7 +104,10 @@ public class RESTPaymentController {
         return gson.toJson(allPaymentMethods);
     }
 
-    @GetMapping(path="/payees", produces = "application/json")
+    @GetMapping(value = "/payees")
+    @Produces("application/json")
+    @Path("/payees")
+    @GET
     public String getAllPayees() {
         logger.info("getAllPayees() was called");
         Payee first = new Payee("jonh.smith@gmail.com", "Jonh Smith");

@@ -42,7 +42,10 @@ public class RiskEngineApplication implements CommandLineRunner, InitializingBea
 	public void afterPropertiesSet() throws Exception {
 		rabbitMQService.registerCallbackToConsumeMessage((consumerTag, delivery) -> {
 			String message = new String(delivery.getBody(), "UTF-8");
+
 			logger.info("Consumed message: '" + message + "'");
+			logger.info("Delivery tag: '" + delivery.getEnvelope().getDeliveryTag() + "'");
+			logger.info("Delivery properties: '" + delivery.getProperties() + "'");
 
 			Payment payment = gson.fromJson(message, Payment.class);
 

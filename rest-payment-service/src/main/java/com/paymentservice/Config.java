@@ -7,10 +7,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Component
 @EnableWebMvc
-public class Config extends ResourceConfig
-{
-    public Config()
-    {
+public class Config extends ResourceConfig {
+    public Config() {
         register(RESTPaymentController.class);
     }
 }

@@ -1,9 +1,6 @@
 package services;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.DeliverCallback;
+import com.rabbitmq.client.*;
 import com.risk.engine.LoggingController;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -13,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class RabbitMQService implements InitializingBean, DisposableBean {
+public class RabbitMQService implements InitializingBean,DisposableBean {
 
     @Autowired
     LoggingController logger;
@@ -43,6 +40,12 @@ public class RabbitMQService implements InitializingBean, DisposableBean {
 
                 logger.info("init() -  creating channel");
                 channel = connection.createChannel();
+                channel.confirmSelect();
+                channel.addConfirmListener((sequenceNumber, multiple) -> {
+                    logger.info("Message was confirmed");
+                }, (sequenceNumber, multiple) -> {
+                    logger.info("Message WAS NOT confirmed");
+                });
 
                 logger.info("init() -  declaring queue: " +queueName);
                 channel.queueDeclare(queueName, false, false, false, null);
