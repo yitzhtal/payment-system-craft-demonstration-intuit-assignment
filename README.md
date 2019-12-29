@@ -1,5 +1,7 @@
 # Payment-System-Craft-Demonstration-Intuit-Assignment
 
+<img src="https://i.ibb.co/n1WhrLG/Screen-Shot-2019-12-29-at-18-31-10.png" align="center">
+
 # How to run the project?
 
 <u><b>Prerequisites:</b></u> Docker, Java and Maven installed.
