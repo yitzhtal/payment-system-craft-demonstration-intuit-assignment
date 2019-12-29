@@ -12,7 +12,9 @@ Please verify you are able to visit the RabbitMQ UI Management Tool with guest;g
 
 3) Run the Rest Payment Service: ```sudo ./run-rest-payment-service.sh```.
 
-4) Run the Risk Engine Service: ```sudo ./run-risk-engine.sh```.
+4) Open a new terminal, and run the Risk Engine Service:</br>
+- ```cd Payment-System-Craft-Demonstration-Intuit-Assignment```
+- ```sudo ./run-risk-engine.sh```.
 
 You are now ready to go. 
 - Create payments at: ```create_payment.html``` under 'Payment-System-Craft-Demonstration-Intuit-Assignment' folder.
