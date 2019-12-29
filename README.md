@@ -21,9 +21,9 @@ Please verify you are able to visit the RabbitMQ UI Management Tool with guest;g
 You are now ready to go. 
 
 - Create payments at: ```Payment-System-Craft-Demonstration-Intuit-Assignment/create_payment.html```:
-<img src="https://i.ibb.co/c1ygkw4/Screen-Shot-2019-12-29-at-17-51-21.png" align="center" height="448" width="348" >
+<img src="https://i.ibb.co/c1ygkw4/Screen-Shot-2019-12-29-at-17-51-21.png" align="center" height="448" width="348" ><br/>
 * A successful payment must be sent with a valid credit card number, you can use "5196081888500645" for your manual testing / any other valid credit card number.
-- Watch the processed payments after the Risk Engine analysis at: ```COMPLETE ME```.
+-
 
 5) Terminate the project using: ```sudo ./terminate.sh```.
 
