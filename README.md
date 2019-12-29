@@ -12,7 +12,7 @@
 
 3) Provide permissions to the shell running scripts: ```chmod 755 *.sh```.
 
-4) Run the RabbitMQ Message queue first (provide your root password9:</br> ```sudo ./run-rabbitmq.sh```.</br>
+4) Run the RabbitMQ Message queue first (provide your root password):</br> ```sudo ./run-rabbitmq.sh```.</br>
 Please verify you are able to visit the RabbitMQ UI Management Tool with guest;guest here: http://localhost:8081.
 
 5) Run the Rest Payment Service: ```sudo ./run-rest-payment-service.sh```.
