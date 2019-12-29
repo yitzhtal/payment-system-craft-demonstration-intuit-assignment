@@ -19,7 +19,7 @@ Please verify you are able to visit the RabbitMQ UI Management Tool with guest;g
 You are now ready to go. 
 
 - Create payments at: ```create_payment.html``` under 'Payment-System-Craft-Demonstration-Intuit-Assignment' folder:
-<img src="https://i.ibb.co/c1ygkw4/Screen-Shot-2019-12-29-at-17-51-21.png" align="center" height="348" width="348" >
+<img src="https://i.ibb.co/c1ygkw4/Screen-Shot-2019-12-29-at-17-51-21.png" align="center" height="448" width="348" >
 
 - Watch the processed payments after the Risk Engine analysis at: ```COMPLETE ME```.
 
