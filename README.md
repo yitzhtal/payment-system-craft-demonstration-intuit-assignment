@@ -2,7 +2,7 @@
 
 # How to run the project?
 
-Prerequisites: Docker, Java and Maven installed.
+<u><b>Prerequisites:</b></u> Docker, Java and Maven installed.
 
 1) Clone the project to your local directory:</br> ```git clone https://github.com/talitz/Payment-System-Craft-Demonstration-Intuit-Assignment.git```.
 2) CD into the directory: ```cd Payment-System-Craft-Demonstration-Intuit-Assignment```.
