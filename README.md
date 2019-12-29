@@ -17,7 +17,10 @@ Please verify you are able to visit the RabbitMQ UI Management Tool with guest;g
 - ```sudo ./run-risk-engine.sh```.
 
 You are now ready to go. 
-- Create payments at: ```create_payment.html``` under 'Payment-System-Craft-Demonstration-Intuit-Assignment' folder.
+
+- Create payments at: ```create_payment.html``` under 'Payment-System-Craft-Demonstration-Intuit-Assignment' folder:
+![Create Payment Form](https://i.ibb.co/c1ygkw4/Screen-Shot-2019-12-29-at-17-51-21.png)
+
 - Watch the processed payments after the Risk Engine analysis at: ```COMPLETE ME```.
 
 5) Terminate the project using: ```sudo ./terminate.sh```.
