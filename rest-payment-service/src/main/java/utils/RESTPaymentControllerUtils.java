@@ -14,7 +14,7 @@ public class RESTPaymentControllerUtils {
     @Autowired
     LoggingController logger;
 
-    public boolean isAllFieldsNotEmpty(Long amount, String currency, String userId, String payeeId, String paymentMethodId) {
+    public boolean isAllFieldsNotEmpty(String amount, String currency, String userId, String payeeId, String paymentMethodId) {
         if (StringUtils.isEmpty(amount) || StringUtils.isEmpty(currency) || StringUtils.isEmpty(userId) || StringUtils.isEmpty(payeeId) || StringUtils.isEmpty(paymentMethodId)) {
             return false;
         }
@@ -22,7 +22,7 @@ public class RESTPaymentControllerUtils {
     }
 
     public boolean isPaymentMethodValid(String paymentMethodId) {
-        return CreditCardValidation.isValid(Long.valueOf(paymentMethodId));
+        return isStringContainsOnlyNumbers(paymentMethodId) && CreditCardValidation.isValid(Long.valueOf(paymentMethodId));
     }
 
     public boolean isSupportedCurrency(String currencyToVerify) {
@@ -30,5 +30,9 @@ public class RESTPaymentControllerUtils {
             if (curr.name().equalsIgnoreCase(currencyToVerify)) return true;
         }
         return false;
+    }
+
+    public boolean isStringContainsOnlyNumbers(String str) {
+        return str.matches("[0-9]+");
     }
 }

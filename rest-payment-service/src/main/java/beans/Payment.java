@@ -11,7 +11,7 @@ public class Payment implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @XmlAttribute(name = "amount")
-    private Long amount;
+    private String amount;
 
     @XmlAttribute(name="currency")
     private String currency;
@@ -25,7 +25,7 @@ public class Payment implements Serializable {
     @XmlElement(name = "paymentMethodId")
     private String paymentMethodId;
 
-    public Payment(Long amount, String currency, String userId, String payeeId, String paymentMethodId) {
+    public Payment(String amount, String currency, String userId, String payeeId, String paymentMethodId) {
         this.amount = amount;
         this.currency = currency;
         this.userId = userId;
@@ -33,11 +33,11 @@ public class Payment implements Serializable {
         this.paymentMethodId = paymentMethodId;
     }
 
-    public Long getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

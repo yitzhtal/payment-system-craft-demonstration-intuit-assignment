@@ -47,7 +47,7 @@ public class RESTPaymentController {
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
     @Path("/create-payment")
     @PostMapping(value="/create-payment", consumes = MediaType.APPLICATION_FORM_URLENCODED)
-    public Response createPayment(@FormParam("amount") Long amount, @FormParam("currency") String currency, @FormParam("userId") String userId, @FormParam("payeeId") String payeeId,
+    public Response createPayment(@FormParam("amount") String amount, @FormParam("currency") String currency, @FormParam("userId") String userId, @FormParam("payeeId") String payeeId,
                                   @FormParam("paymentMethodId") String paymentMethodId) {
         logger.info("createPayment() - was called");
 
@@ -64,6 +64,11 @@ public class RESTPaymentController {
         logger.info("createPayment() - verifying the payment methods is valid");
         if(!restPaymentControllerUtils.isPaymentMethodValid(paymentMethodId)) {
             return Response.status(Response.Status.BAD_REQUEST).entity("The payment method you entered is not valid.").build();
+        }
+
+        logger.info("createPayment() - verifying the payment amount is valid");
+        if(!restPaymentControllerUtils.isStringContainsOnlyNumbers(amount)) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("The payment amount you entered is not valid.").build();
         }
 
         Payment payment = new Payment(amount,currency, userId, payeeId,  paymentMethodId);
