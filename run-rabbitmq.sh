@@ -10,5 +10,5 @@ then
   	docker run -d --hostname rabbit-co --name rabbit-co -p 8081:15672 -p 5672:5672 rabbitmq:3-management
 	docker ps
 	docker logs rabbit-co
-	echo "Finishde successfully"
+	echo "Finished successfully"
 fi
