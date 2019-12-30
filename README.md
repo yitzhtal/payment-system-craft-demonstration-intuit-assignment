@@ -2,12 +2,20 @@
 
 <img src="https://i.ibb.co/n1WhrLG/Screen-Shot-2019-12-29-at-18-31-10.png" align="center">
 
-# How to run the project?
+# Introduction:
+Implementation of a peer to peer distributed payment system that can be integrated to one of the Intuit products.
+- REST Payment API - Implemented using Spring Framework in Java, receives the payment requests and publishes to the rabbit-me message queue.
+- RabbitMQ Message Queue - Receives the REST API requests and stores it in it's queue. 
+- Risk Engine - consumes messages from the RabbitMQ Message queue, performs risk analysis and store the results in H2 Database.
+- H2 Database - in-memory database, embedded in our Java application (integrated with our Spring Boot).
 
-<u><b>Prerequisites:</b></u> 
+# Prerequisites:
+
 - Docker 19.03.5. 
 - Java 1.8.0_221.
 - Maven 3.6.0.
+
+# How to run the project?
 
 1) Clone the project to your local directory:</br> ```git clone https://github.com/talitz/Payment-System-Craft-Demonstration-Intuit-Assignment.git```.
 
