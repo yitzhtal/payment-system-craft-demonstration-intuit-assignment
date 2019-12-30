@@ -17,6 +17,8 @@ Implementation of a peer to peer distributed payment system that can be integrat
 
 ### Running the Project:
 
+Please <b>strictly</b> follow each step of the following:
+
 1) Clone the project to your local directory:</br> ```git clone https://github.com/talitz/Payment-System-Craft-Demonstration-Intuit-Assignment.git```.
 
 2) CD into the directory: ```cd Payment-System-Craft-Demonstration-Intuit-Assignment```.
@@ -26,11 +28,11 @@ Implementation of a peer to peer distributed payment system that can be integrat
 4) Run the RabbitMQ Message queue first (provide your root password):</br> ```sudo ./run-rabbitmq.sh```.</br>
 Please verify you are able to visit the RabbitMQ UI Management Tool with guest;guest here: http://localhost:8081.
 
-5) Run the Rest Payment Service: ```sudo ./run-rest-payment-service.sh```.
+5) Open a new terminal, and run the Risk Engine Service: ```sudo ./run-risk-engine.sh```.
 
-6) Open a new terminal, and run the Risk Engine Service:</br>
+6) Open a new terminal, and the Rest Payment Service: 
 - ```cd Payment-System-Craft-Demonstration-Intuit-Assignment```
-- ```sudo ./run-risk-engine.sh```.
+- ```sudo ./run-rest-payment-service.sh```.
 
 You are now ready to go. 
 
