@@ -26,10 +26,7 @@ public class DBService implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         logger.info("afterPropertiesSet() - start");
-
-        jdbcTemplate.execute("DROP TABLE processed_payments IF EXISTS");
-        jdbcTemplate.execute("CREATE TABLE processed_payments(id SERIAL, amount VARCHAR(255), currency VARCHAR(255), userId VARCHAR(255), payeeId VARCHAR(255), paymentMethodId VARCHAR(255),riskScore VARCHAR(255),approved VARCHAR(255))");
-
+        createProcessedPaymentsTable();
         logger.info("afterPropertiesSet() - end");
     }
 
@@ -43,6 +40,11 @@ public class DBService implements InitializingBean {
                         rs.getString("paymentMethodId"),
                         rs.getInt("riskScore"),
                         rs.getBoolean("approved")));
+    }
+
+    public void createProcessedPaymentsTable() {
+        jdbcTemplate.execute("DROP TABLE processed_payments IF EXISTS");
+        jdbcTemplate.execute("CREATE TABLE processed_payments(id SERIAL, amount VARCHAR(255), currency VARCHAR(255), userId VARCHAR(255), payeeId VARCHAR(255), paymentMethodId VARCHAR(255),riskScore VARCHAR(255),approved VARCHAR(255))");
     }
 
     public JdbcTemplate getJdbcTemplate() {
