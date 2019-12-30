@@ -4,10 +4,10 @@
 
 # Introduction:
 Implementation of a peer to peer distributed payment system that can be integrated to one of the Intuit products.
-- REST Payment API - Implemented using Spring Framework in Java, receives the payment requests and publishes to the rabbit-me message queue.
-- RabbitMQ Message Queue - Receives the REST API requests and stores it in it's queue. 
-- Risk Engine - consumes messages from the RabbitMQ Message queue, performs risk analysis and store the results in H2 Database.
-- H2 Database - in-memory database, embedded in our Java application (integrated with our Spring Boot).
+- <b>REST Payment API</b> - Implemented using Spring Framework in Java, receives the payment requests and publishes to the rabbit-me message queue.
+- <b>RabbitMQ Message Queue</b> - Receives the REST API requests and stores it in it's queue. 
+- <b>Risk Engine</b> - consumes messages from the RabbitMQ Message queue, performs risk analysis and store the results in H2 Database.
+- <b>H2 Database</b> - in-memory database, embedded in our Java application (integrated with our Spring Boot).
 
 # Prerequisites:
 
