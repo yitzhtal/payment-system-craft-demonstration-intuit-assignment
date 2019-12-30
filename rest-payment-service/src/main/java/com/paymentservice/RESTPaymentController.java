@@ -59,7 +59,17 @@ public class RESTPaymentController {
         }
 
         Payment payment = new Payment(amount,currency, userId, payeeId,  paymentMethodId);
-        payment.setUserId(UUID.randomUUID().toString()); //check this GUID
+
+        // For simplicity, this is only POC - I'm generating new UUID for every request
+        // In a large scale system, there should be a database that maps users to their UUIDs and for every new user -> should generate it's unique UUID
+        // For existing user -> it's UUID should be taken from this Database
+        // Example, for the following mapping:
+        // Tal Yitzhak -> 2489f48a-aa32-4539-9c24-a320f9fa0e38
+        // Mor Basson -> e9fabbe3-1907-4978-960d-5edfb1733da7
+        // If Nir Harel is sending a request, as a new user he will be added to the Database: Nir Harel -> 9f871606-5dd4-4996-8076-00ddf9d33007.
+        // In the next payment Nir Harel is performing, we use the value '9f871606-5dd4-4996-8076-00ddf9d33007' from the DB.
+
+        payment.setUserId(UUID.randomUUID().toString());
         payment.setPayeeId(UUID.randomUUID().toString());
         payment.setPaymentMethodId(UUID.randomUUID().toString());
 

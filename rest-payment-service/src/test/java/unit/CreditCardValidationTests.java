@@ -16,15 +16,15 @@ public class CreditCardValidationTests{
 
     @Test
     public void testCreditCardOnSuccess() throws Exception {
-        Assert.assertTrue(creditCardValidation.isValid(Long.valueOf("5196081888500645")));
-        Assert.assertTrue(creditCardValidation.isValid(Long.valueOf("371263696359848")));
-        Assert.assertTrue(creditCardValidation.isValid(Long.valueOf("4716281326187468")));
+        Assert.assertTrue(creditCardValidation.isValid("5196081888500645"));
+        Assert.assertTrue(creditCardValidation.isValid("371263696359848"));
+        Assert.assertTrue(creditCardValidation.isValid("4716281326187468"));
     }
 
     @Test
     public void testCreditCardOnFailure() throws Exception {
-        Assert.assertFalse(creditCardValidation.isValid(Long.valueOf("1234123412341234")));
-        Assert.assertFalse(creditCardValidation.isValid(Long.valueOf("0000000000000000")));
-        Assert.assertFalse(creditCardValidation.isValid(Long.valueOf("1212121212121212")));
+        Assert.assertFalse(creditCardValidation.isValid("1234123412341234"));
+        Assert.assertFalse(creditCardValidation.isValid("0000000000000000"));
+        Assert.assertFalse(creditCardValidation.isValid("1212121212121212"));
     }
 }

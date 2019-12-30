@@ -4,25 +4,18 @@ import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@XmlAccessorType(XmlAccessType.NONE)
-@XmlRootElement(name = "user")
 public class Payment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlAttribute(name = "amount")
     private Long amount;
 
-    @XmlAttribute(name="currency")
     private String currency;
 
-    @XmlElement(name = "userId")
     private String userId;
 
-    @XmlElement(name = "payeeId")
     private String payeeId;
 
-    @XmlElement(name = "paymentMethodId")
     private String paymentMethodId;
 
     public Payment(Long amount, String currency, String userId, String payeeId, String paymentMethodId) {

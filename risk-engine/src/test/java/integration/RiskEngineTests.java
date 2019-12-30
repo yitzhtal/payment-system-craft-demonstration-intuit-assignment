@@ -36,8 +36,9 @@ public class RiskEngineTests {
 
     }
 
+    //We test the logic of 30% of payments rejected, although this is probably only temporary logic for POC...
     @Test
-    public void testAnalyze() throws Exception {
+    public void testAnalyze30PercentRejected() throws Exception {
         Random r = new Random();
 
         for(int i=0; i<10; i++) {
@@ -46,6 +47,18 @@ public class RiskEngineTests {
 
         //for every 10 payments, we reject 3
         Assert.assertTrue(dbService.getRejectedPayments().get() == 3);
+    }
+
+    @Test
+    public void testAnalyze70PercentApproved() throws Exception {
+        Random r = new Random();
+
+        for(int i=0; i<7; i++) {
+            riskEngineService.analyze(new Payment((long) r.nextInt(1000),"USD","MorBasson","MahmoodShaib","123412341234"));
+        }
+
+        //for every 10 payments, we reject 3
+        Assert.assertTrue(dbService.getApprovedPayments().get() == 7);
     }
 
     @Test

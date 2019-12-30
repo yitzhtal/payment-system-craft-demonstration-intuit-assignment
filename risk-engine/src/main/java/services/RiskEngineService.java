@@ -3,13 +3,14 @@ package services;
 import beans.Payment;
 import beans.ProcessedPayment;
 import com.risk.engine.LoggingController;
+import interfaces.RiskEngineServiceInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
 @Component
-public class RiskEngineService {
+public class RiskEngineService implements RiskEngineServiceInf {
     @Autowired
     LoggingController logger;
 

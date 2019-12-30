@@ -82,4 +82,15 @@ public class Payment implements Serializable {
     public int hashCode() {
         return Objects.hash(amount, currency, userId, payeeId, paymentMethodId);
     }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "amount='" + amount + '\'' +
+                ", currency='" + currency + '\'' +
+                ", userId='" + userId + '\'' +
+                ", payeeId='" + payeeId + '\'' +
+                ", paymentMethodId='" + paymentMethodId + '\'' +
+                '}';
+    }
 }

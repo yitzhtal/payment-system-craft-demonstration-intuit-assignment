@@ -4,16 +4,20 @@ import java.util.Scanner;
 
 public class CreditCardValidation {
 
-    public static boolean isValid(long number)
-    {
-        return (getSize(number) >= 13 &&
-                getSize(number) <= 16) &&
-                (prefixMatched(number, 4) ||
-                        prefixMatched(number, 5) ||
-                        prefixMatched(number, 37) ||
-                        prefixMatched(number, 6)) &&
-                ((sumOfDoubleEvenPlace(number) +
-                        sumOfOddPlace(number)) % 10 == 0);
+    public static boolean isValid(String numberAsString) {
+        try {
+            long number = Long.valueOf(numberAsString).longValue();
+            return (getSize(number) >= 13 &&
+                    getSize(number) <= 16) &&
+                    (prefixMatched(number, 4) ||
+                            prefixMatched(number, 5) ||
+                            prefixMatched(number, 37) ||
+                            prefixMatched(number, 6)) &&
+                    ((sumOfDoubleEvenPlace(number) +
+                            sumOfOddPlace(number)) % 10 == 0);
+        } catch(Exception e) {
+            return false;
+        }
     }
 
     // Get the result from Step 2

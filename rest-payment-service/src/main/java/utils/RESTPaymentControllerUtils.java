@@ -20,7 +20,7 @@ public class RESTPaymentControllerUtils {
     }
 
     public boolean isPaymentMethodValid(String paymentMethodId) {
-        return isStringContainsOnlyNumbers(paymentMethodId) && CreditCardValidation.isValid(Long.valueOf(paymentMethodId));
+        return isStringContainsOnlyNumbers(paymentMethodId) && CreditCardValidation.isValid(paymentMethodId);
     }
 
     public boolean isSupportedCurrency(String currencyToVerify) {

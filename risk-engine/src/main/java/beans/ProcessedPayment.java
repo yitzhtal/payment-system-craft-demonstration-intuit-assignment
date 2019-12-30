@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.Objects;
+
 public class ProcessedPayment extends Payment {
     private int riskScore = -1;
     private boolean approved = false;
@@ -38,5 +40,20 @@ public class ProcessedPayment extends Payment {
                 "riskScore=" + riskScore +
                 ", approved=" + approved +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ProcessedPayment that = (ProcessedPayment) o;
+        return riskScore == that.riskScore &&
+                approved == that.approved;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), riskScore, approved);
     }
 }

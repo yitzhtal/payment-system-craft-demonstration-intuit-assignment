@@ -30,6 +30,12 @@ public class DBService implements InitializingBean {
         logger.info("afterPropertiesSet() - end");
     }
 
+    //This function exposes jdbcTemplate through this Class.
+    //This allows all different kinds of operations to the database with 'execute' command.
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
+    }
+
     public List<?> getAllTableRows() {
         return jdbcTemplate.query("SELECT * FROM processed_payments", new Object[] { },
                 (rs, rowNum) -> new ProcessedPayment(
@@ -45,10 +51,6 @@ public class DBService implements InitializingBean {
     public void createProcessedPaymentsTable() {
         jdbcTemplate.execute("DROP TABLE processed_payments IF EXISTS");
         jdbcTemplate.execute("CREATE TABLE processed_payments(id SERIAL, amount VARCHAR(255), currency VARCHAR(255), userId VARCHAR(255), payeeId VARCHAR(255), paymentMethodId VARCHAR(255),riskScore VARCHAR(255),approved VARCHAR(255))");
-    }
-
-    public JdbcTemplate getJdbcTemplate() {
-        return jdbcTemplate;
     }
 
     public AtomicInteger getApprovedPayments() {
