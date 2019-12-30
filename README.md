@@ -38,7 +38,7 @@ You are now ready to go.
 <img src="https://i.ibb.co/c1ygkw4/Screen-Shot-2019-12-29-at-17-51-21.png" align="center" height="448" width="348" ><br/>
 * A successful payment must be sent with a valid credit card number, you can use "5196081888500645" for your manual testing / any other valid credit card number.
 
-- Click on 'Process Payments' to view the Database (Insert the following <b>JDBC URL</b>: jdbc:h2:mem:testdb).
+- Click on 'Process Payments' to view the Database (Insert the following <b>JDBC URL</b>: ```jdbc:h2:mem:testdb```).
 7) Terminate the project using: ```sudo ./terminate.sh```.
 
 ### What's Next?
