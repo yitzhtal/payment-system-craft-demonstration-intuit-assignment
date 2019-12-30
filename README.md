@@ -15,7 +15,7 @@ Implementation of a peer to peer distributed payment system that can be integrat
 - Java 1.8.0_221.
 - Maven 3.6.0.
 
-# How to run the project?
+# Running the Project:
 
 1) Clone the project to your local directory:</br> ```git clone https://github.com/talitz/Payment-System-Craft-Demonstration-Intuit-Assignment.git```.
 
