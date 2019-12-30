@@ -1,11 +1,8 @@
 package beans;
 
-import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.util.Objects;
-  
-@XmlAccessorType(XmlAccessType.NONE)
-@XmlRootElement(name = "user")
+
 public class Payment implements Serializable {
   
     private static final long serialVersionUID = 1L;
