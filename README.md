@@ -28,7 +28,7 @@ Please <b>strictly</b> follow each step of the following:
 4) Run the RabbitMQ Message queue first (provide your root password):</br> ```sudo ./run-rabbitmq.sh```.</br>
 Please verify you are able to visit the RabbitMQ UI Management Tool with guest;guest here: http://localhost:8081.
 
-5) Rrun the Risk Engine Service: ```sudo ./run-risk-engine.sh```.
+5) Run the Risk Engine Service: ```sudo ./run-risk-engine.sh```.
 
 6) Open a new terminal, and run the Rest Payment Service: 
 - ```cd Payment-System-Craft-Demonstration-Intuit-Assignment```
