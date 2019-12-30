@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import javax.ws.rs.core.Response;
-
 @Component
 public class RESTPaymentControllerUtils {
 

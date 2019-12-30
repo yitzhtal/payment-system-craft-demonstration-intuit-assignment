@@ -16,7 +16,6 @@ import services.RiskEngineService;
 
 import java.util.Arrays;
 
-@CrossOrigin(origins = "http://localhost:8080")
 @SpringBootApplication(scanBasePackages={"services","com.risk.engine"})
 public class RiskEngineApplication implements CommandLineRunner, InitializingBean {
 
@@ -32,7 +31,8 @@ public class RiskEngineApplication implements CommandLineRunner, InitializingBea
 	@Autowired
 	LoggingController logger;
 
-	Gson gson = new Gson();
+	@Autowired
+	Gson gson;
 
 	public static void main(String args[]) {
 		SpringApplication.run(RiskEngineApplication.class, args);

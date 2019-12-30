@@ -1,21 +1,21 @@
 package utils;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 @Component
 public class RESTPaymentTestsUtil {
-
-    public MultiValueMap<String, String> preparePaymentRequest(String paymentMethodId, String userId, String amount, String currency, String payeeId) {
-            MultiValueMap<String, String> paymentRequest = new LinkedMultiValueMap<String, String>();
-
-            paymentRequest.add("paymentMethodId", paymentMethodId); //valid credit card number
-            paymentRequest.add("userId",  userId);
-            paymentRequest.add("amount", amount);
-            paymentRequest.add("currency", currency);
-            paymentRequest.add("payeeId", payeeId);
-
-            return paymentRequest;
+    public void testCreatePaymentPostRequestWithParams(MockMvc mockMvc, String basePath, String s, ResultMatcher ok) throws Exception {
+        mockMvc.perform(post(basePath + "/create-payment")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .content(s))
+                .andDo(print()).andExpect(ok).andReturn();
     }
 }

@@ -14,13 +14,10 @@ public class PaymentMethod implements Serializable {
   
     private static final long serialVersionUID = 1L;
 
-    @XmlAttribute(name = "type")
     private PaymentMethodType type;
 
-    @XmlAttribute(name="accountName")
     private String accountName;
 
-    @XmlAttribute(name="lastFourDigits")
     private String lastFourDigits;
 
     public PaymentMethod(PaymentMethodType type, String accountName, String lastFourDigits) {

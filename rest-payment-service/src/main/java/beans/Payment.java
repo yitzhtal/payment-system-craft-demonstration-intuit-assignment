@@ -10,19 +10,14 @@ public class Payment implements Serializable {
   
     private static final long serialVersionUID = 1L;
 
-    @XmlAttribute(name = "amount")
     private String amount;
 
-    @XmlAttribute(name="currency")
     private String currency;
 
-    @XmlElement(name = "userId")
     private String userId;
 
-    @XmlElement(name = "payeeId")
     private String payeeId;
 
-    @XmlElement(name = "paymentMethodId")
     private String paymentMethodId;
 
     public Payment(String amount, String currency, String userId, String payeeId, String paymentMethodId) {

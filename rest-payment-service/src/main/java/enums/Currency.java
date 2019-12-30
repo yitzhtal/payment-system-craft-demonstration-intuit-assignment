@@ -1,5 +1,5 @@
 package enums;
 
 public enum Currency {
-    USD,EUR,AUD
+    USD,EUR,AUD,BDT,AWG,BSD
 }
