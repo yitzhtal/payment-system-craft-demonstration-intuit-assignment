@@ -21,10 +21,10 @@ import java.util.UUID;
 public class RESTPaymentController {
 
     @Autowired
-    RESTPaymentControllerUtils restPaymentControllerUtils;
+    private RESTPaymentControllerUtils restPaymentControllerUtils;
 
     @Autowired
-    LoggingController logger;
+    public LoggingController logger;
 
     @Autowired
     private RabbitMQService rabbitMQService;
@@ -105,5 +105,13 @@ public class RESTPaymentController {
         allPayees.add(first);
         logger.info("getAllPayees() ended successfully");
         return allPayees;
+    }
+
+    public void setRestPaymentControllerUtils(RESTPaymentControllerUtils restPaymentControllerUtils) {
+        this.restPaymentControllerUtils = restPaymentControllerUtils;
+    }
+
+    public void setGson(Gson gson) {
+        this.gson = gson;
     }
 }
