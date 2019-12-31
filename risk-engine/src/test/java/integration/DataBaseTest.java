@@ -1,6 +1,5 @@
 package integration;
 
-import beans.Payment;
 import com.risk.engine.RiskEngineApplication;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,13 +12,11 @@ import org.springframework.web.context.WebApplicationContext;
 import services.DBService;
 import services.RiskEngineService;
 
-import java.util.Random;
-
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RiskEngineApplication.class)
-public class DataBaseTests {
+public class DataBaseTest {
 
     @Autowired
     protected WebApplicationContext wac;
