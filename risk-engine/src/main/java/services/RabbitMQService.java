@@ -25,6 +25,7 @@ public class RabbitMQService implements InitializingBean,DisposableBean {
     private final String host = "localhost";
     private final int port = 5672;
 
+    @Override
     public void afterPropertiesSet() throws Exception {
         logger.info("init() -  initalizing RabbitMQService");
         try {
@@ -51,6 +52,7 @@ public class RabbitMQService implements InitializingBean,DisposableBean {
                 channel.queueDeclare(queueName, false, false, false, null);
         } catch (Exception e) {
             logger.info("init() -  failed initializing RabbitMQService bean");
+            throw new Exception("init() -  failed initializing RabbitMQService bean");
         }
     }
 

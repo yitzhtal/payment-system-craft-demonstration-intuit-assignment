@@ -15,7 +15,7 @@ public class RiskEngineService implements RiskEngineServiceInf {
     LoggingController logger;
 
     @Autowired
-    DBService dataBaseService;
+    PaymentTracker paymentTracker;
 
     public ProcessedPayment analyze(Payment payment) {
         logger.info("analyze() - called");
@@ -40,12 +40,12 @@ public class RiskEngineService implements RiskEngineServiceInf {
     }
 
     public boolean isPaymentAccepted(ProcessedPayment processedPayment) {
-        if(dataBaseService.getApprovedPayments().get() < 7) { //we can approve more payments
-            dataBaseService.getApprovedPayments().incrementAndGet();
+        if(paymentTracker.getApprovedPayments().get() < 7) { //we can approve more payments
+            paymentTracker.getApprovedPayments().incrementAndGet();
             return true;
         } else {
-            int rejectedPayments = dataBaseService.getRejectedPayments().incrementAndGet();
-            if(rejectedPayments == 3) dataBaseService.getApprovedPayments().set(0); //start approving payments again
+            int rejectedPayments = paymentTracker.getRejectedPayments().incrementAndGet();
+            if(rejectedPayments == 3) paymentTracker.getApprovedPayments().set(0); //start approving payments again
             return false;
         }
     }

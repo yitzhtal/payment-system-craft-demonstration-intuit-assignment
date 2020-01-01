@@ -2,25 +2,28 @@ package com.risk.engine;
 import beans.Payment;
 import beans.ProcessedPayment;
 import com.google.gson.Gson;
+import interfaces.DBServiceInf;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import services.DBService;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import services.RabbitMQService;
 import services.RiskEngineService;
 
-import java.util.Arrays;
+import javax.sql.DataSource;
 
 @SpringBootApplication(scanBasePackages={"services","com.risk.engine"})
+@EntityScan("beans")
+@EnableJpaRepositories("interfaces")
 public class RiskEngineApplication implements CommandLineRunner, InitializingBean {
+	@Autowired
+	DataSource dataSource;
 
 	@Autowired
-	DBService dataBaseService;
+	DBServiceInf databaseService;
 
 	@Autowired
 	RiskEngineService riskEngineService;
@@ -40,6 +43,7 @@ public class RiskEngineApplication implements CommandLineRunner, InitializingBea
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		logger.info("afterPropertiesSet() : registering call back for rabbitmq");
 		rabbitMQService.registerCallbackToConsumeMessage((consumerTag, delivery) -> {
 			String message = new String(delivery.getBody(), "UTF-8");
 
@@ -54,18 +58,18 @@ public class RiskEngineApplication implements CommandLineRunner, InitializingBea
 			ProcessedPayment processedPayment = riskEngineService.analyze(payment);
 
 			logger.info("Inserting payment record after analysis");
-			dataBaseService.getJdbcTemplate().batchUpdate("INSERT INTO processed_payments(amount, currency, userId, payeeId, paymentMethodId, riskScore, approved) " +
-					"VALUES ('" + processedPayment.getAmount() + "','" + processedPayment.getCurrency() + "','" + processedPayment.getUserId() +
-					"','" + processedPayment.getPayeeId() + "','" + processedPayment.getPaymentMethodId() + "','"+processedPayment.getRiskScore()+"','"+processedPayment.isApproved()+"')");
+			databaseService.save(processedPayment);
 
 			logger.info("Current Database:");
-			dataBaseService.getAllTableRows().stream().forEach(row -> logger.info(((Object) row).toString()));
+			databaseService.findAll().forEach(row -> logger.info(((Object) row).toString()));
 		});
+		logger.info("afterPropertiesSet() : done registering call back for rabbitmq");
 	}
 
 	@Override
 	public void run(String... strings){
 		logger.info("RiskEngineApplication is running...");
+		logger.info("Our DataSource is = " + dataSource.toString());
 	}
 
 }

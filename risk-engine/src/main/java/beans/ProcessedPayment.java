@@ -1,7 +1,9 @@
 package beans;
 
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
 public class ProcessedPayment extends Payment {
     private int riskScore = -1;
     private boolean approved = false;
@@ -15,6 +17,9 @@ public class ProcessedPayment extends Payment {
     public ProcessedPayment(Long amount, String currency, String userId, String payeeId, String paymentMethodId, int riskScore) {
         super(amount, currency, userId, payeeId, paymentMethodId);
         this.riskScore = riskScore;
+    }
+
+    public ProcessedPayment() {
     }
 
 
