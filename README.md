@@ -59,7 +59,7 @@ View the results in two ways:
 - Run the project in Containrized environment that contains Java & Maven.
 - Secure the system - use specific username & password for connecting to RabbitMQ.
 - Design a UI to present the DataBase rows under 'Processed Payments' html tab.
-- Run the 'Risk Engine' process on multiple machines to achieve *Horizontal Scalability* :)
+- Run the 'Risk Engine' process on multiple machines to achieve *Horizontal Scalability*.
 
 <img src="https://i.ibb.co/rH0qsMS/1-vqm-Ige-JMu-Isgf-ISNCKLx8w.png" align="center" height="218" width="398" ><br/>
 
