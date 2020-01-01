@@ -59,4 +59,4 @@ View the results in two ways:
 - Run the project in Containrized environment that contains Java & Maven.
 - Secure the system - use specific username & password for connecting to RabbitMQ.
 - Design a UI to present the DataBase rows under 'Processed Payments' html tab.
-- Test the POC with multiple machines running the 'Risk Engine' process (Horizontal Scalability).
+- Run the 'Risk Engine' process on multiple machines to achieve *Horizontal Scalability*.
