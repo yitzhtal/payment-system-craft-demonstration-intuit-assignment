@@ -50,7 +50,7 @@ View the results in two ways:
 
 - In 'MySQLWorkbench' (or any other SQL monitoring tool), after you connected with the former details to the database:
 
-<img src="https://i.ibb.co/GpNLvNq/Screen-Shot-2020-01-01-at-20-15-08.png" align="center" height="318" width="988" ><br/>
+<img src="https://i.ibb.co/GpNLvNq/Screen-Shot-2020-01-01-at-20-15-08.png" align="center" height="218" width="988" ><br/>
 
 7) Terminate the project using: ```sudo ./terminate.sh```.
 
