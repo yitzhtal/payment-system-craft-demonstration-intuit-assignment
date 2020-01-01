@@ -14,6 +14,7 @@ Implementation of a peer to peer distributed payment system that can be integrat
 - Docker 19.03.5. 
 - Java 1.8.0_221.
 - Maven 3.6.0.
+- The following ports should be open before running the project: 8080, 8087, 5672, 8081.
 
 ### Running the Project:
 
