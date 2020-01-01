@@ -56,7 +56,7 @@ View the results in two ways:
 
 ### What's Next?
 
-- Run the project in Containrized environment that contains Java & Maven.
+- Run the Spring project in a containerized Java & Maven Docker environment.
 - Secure the system - use specific username & password for connecting to RabbitMQ.
 - Design a UI to present the DataBase rows under 'Processed Payments' html tab.
 - Run the 'Risk Engine' process on multiple machines to achieve *Horizontal Scalability*.
