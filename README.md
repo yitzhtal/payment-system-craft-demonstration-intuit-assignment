@@ -61,5 +61,5 @@ View the results in two ways:
 - Design a UI to present the DataBase rows under 'Processed Payments' html tab.
 - Run the 'Risk Engine' process on multiple machines to achieve *Horizontal Scalability* :)
 
-<img src="https://i.ibb.co/rH0qsMS/1-vqm-Ige-JMu-Isgf-ISNCKLx8w.png" align="center" height="118" width="388" ><br/>
+<img src="https://i.ibb.co/rH0qsMS/1-vqm-Ige-JMu-Isgf-ISNCKLx8w.png" align="center" height="218" width="398" ><br/>
 
