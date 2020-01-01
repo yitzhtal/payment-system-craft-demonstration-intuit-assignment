@@ -48,7 +48,7 @@ View the results in two ways:
 
 <img src="https://i.ibb.co/cYNwHHG/Screen-Shot-2020-01-01-at-20-18-13.png" align="center" height="298" width="988" ><br/>
 
-- In 'MySQLWorkbench' (or any other SQL monitoring tool), after you connected with the former details to the database:
+- In 'MySQLWorkbench' (or any other SQL monitoring tool), after achieving database connection (localhost:3306;talitz;1234):
 
 <img src="https://i.ibb.co/GpNLvNq/Screen-Shot-2020-01-01-at-20-15-08.png" align="center" height="218" width="988" ><br/>
 
