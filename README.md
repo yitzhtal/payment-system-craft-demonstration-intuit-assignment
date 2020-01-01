@@ -46,11 +46,11 @@ You are now ready to go.
 View the results in two ways:
 - All database rows are written into the console log after each payment is processed:
 
-<img src="https://i.ibb.co/cYNwHHG/Screen-Shot-2020-01-01-at-20-18-13.png" align="center" height="448" width="748" ><br/>
+<img src="https://i.ibb.co/cYNwHHG/Screen-Shot-2020-01-01-at-20-18-13.png" align="center" height="318" width="988" ><br/>
 
 - In 'MySQLWorkbench' (or any other SQL monitoring tool), after you connected with the former details to the database:
 
-<img src="https://i.ibb.co/GpNLvNq/Screen-Shot-2020-01-01-at-20-15-08.png" align="center" height="448" width="748" ><br/>
+<img src="https://i.ibb.co/GpNLvNq/Screen-Shot-2020-01-01-at-20-15-08.png" align="center" height="318" width="988" ><br/>
 
 7) Terminate the project using: ```sudo ./terminate.sh```.
 
