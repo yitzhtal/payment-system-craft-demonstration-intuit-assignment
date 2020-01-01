@@ -32,6 +32,8 @@ public class RESTPaymentController {
     @Autowired
     private Gson gson;
 
+    private final Long upperBound = 100000l, lowerBound = 1l;;
+
     @PostMapping(value="/create-payment", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<String> createPayment(@RequestParam("amount") String amount, @RequestParam("currency") String currency, @RequestParam("userId") String userId, @RequestParam("payeeId") String payeeId,
                                                        @RequestParam("paymentMethodId") String paymentMethodId) {
@@ -53,7 +55,7 @@ public class RESTPaymentController {
         }
 
         logger.info("createPayment() - verifying the payment amount is valid");
-        if(!restPaymentControllerUtils.isStringContainsOnlyNumbers(amount)) {
+        if(!restPaymentControllerUtils.isStringContainsOnlyNumbers(amount) && restPaymentControllerUtils.isBetweenRange(lowerBound, upperBound, amount)) {
             return ResponseEntity.badRequest().body("The payment amount you entered is not valid.");
 
         }

@@ -33,4 +33,13 @@ public class RESTPaymentControllerUtils {
     public boolean isStringContainsOnlyNumbers(String str) {
         return str.matches("[0-9]+");
     }
+
+    public boolean isBetweenRange(Long lowerBound, Long upperBound, String amountToCheck) {
+        try {
+            Long amounToCheckAsLong = Long.parseLong(amountToCheck);
+            return amounToCheckAsLong >= lowerBound && amounToCheckAsLong <= upperBound;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
