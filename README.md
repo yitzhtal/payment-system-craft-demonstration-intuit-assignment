@@ -39,7 +39,7 @@ You can install 'MySQLWorkbench' and verify the database connection with the fol
 
 You are now ready to go. 
 
-- Create payments under 'Create Payment' button here: ```Payment-System-Craft-Demonstration-Intuit-Assignment/create_payment.html```:
+- Create payments under 'Create Payment' button here: ```Payment-System-Craft-Demonstration-Intuit-Assignment/create_payment.html```:</br>
 <img src="https://i.ibb.co/c1ygkw4/Screen-Shot-2019-12-29-at-17-51-21.png" align="center" height="448" width="348" ><br/>
 * A successful payment must be sent with a valid credit card number, you can use "5196081888500645" for your manual testing / any other valid credit card number.
 
