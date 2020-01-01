@@ -20,9 +20,9 @@ Implementation of a peer to peer distributed payment system that can be integrat
 
 Please <b>strictly</b> follow each step of the following:
 
-1) Clone the project to your local directory:</br> ```git clone https://github.com/talitz/Payment-System-Craft-Demonstration-Intuit-Assignment.git```.
+1) Clone the project to your local directory:</br> ```git clone https://github.com/talitz/payment-system-craft-demonstration-intuit-assignment.git```.
 
-2) CD into the directory: ```cd Payment-System-Craft-Demonstration-Intuit-Assignment```.
+2) CD into the directory: ```cd payment-system-craft-demonstration-intuit-assignment```.
 
 3) Provide permissions to the shell running scripts: ```chmod 755 *.sh```.
 
@@ -35,12 +35,12 @@ You can install 'MySQLWorkbench' and verify the database connection with the fol
 5) Run the Risk Engine Service: ```sudo ./run-risk-engine.sh```.
 
 6) Open a new terminal, and run the Rest Payment Service: 
-- ```cd Payment-System-Craft-Demonstration-Intuit-Assignment```
+- ```cd payment-system-craft-demonstration-intuit-assignment```
 - ```sudo ./run-rest-payment-service.sh```.
 
 You are now ready to go. 
 
-- Create payments under 'Create Payment' button here: ```Payment-System-Craft-Demonstration-Intuit-Assignment/create_payment.html```:</br>
+- Create payments under 'Create Payment' button here: ```payment-system-craft-demonstration-intuit-assignment/create_payment.html```:</br>
 <img src="https://i.ibb.co/c1ygkw4/Screen-Shot-2019-12-29-at-17-51-21.png" align="center" height="448" width="348" ><br/>
 * A successful payment must be sent with a valid credit card number, you can use "5196081888500645" for your manual testing / any other valid credit card number.
 
