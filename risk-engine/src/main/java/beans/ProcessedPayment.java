@@ -22,7 +22,6 @@ public class ProcessedPayment extends Payment {
     public ProcessedPayment() {
     }
 
-
     public int getRiskScore() {
         return riskScore;
     }
@@ -42,8 +41,13 @@ public class ProcessedPayment extends Payment {
     @Override
     public String toString() {
         return "ProcessedPayment{" +
-                "riskScore=" + riskScore +
-                ", approved=" + approved +
+                "amount='" + super.getAmount() +"'"+
+                ", currency='" + super.getCurrency() + '\'' +
+                ", userId='" + super.getUserId() + '\'' +
+                ", payeeId='" + super.getPayeeId() + '\'' +
+                ", paymentMethodId='" + super.getPaymentMethodId() + '\'' +
+                ", riskScore='" + riskScore + "'"+
+                ", approved='" + approved +
                 '}';
     }
 

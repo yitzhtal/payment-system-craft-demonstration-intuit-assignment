@@ -53,7 +53,6 @@ public class Payment implements Serializable {
         this.currency = currency;
     }
 
-
     public String getUserId() {
         return userId;
     }
@@ -77,7 +76,6 @@ public class Payment implements Serializable {
     public void setPaymentMethodId(String paymentMethodId) {
         this.paymentMethodId = paymentMethodId;
     }
-
 
     @Override
     public boolean equals(Object o) {
