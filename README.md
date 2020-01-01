@@ -1,6 +1,6 @@
 # Payment-System-Craft-Demonstration-Intuit-Assignment
 
-<img src="https://i.ibb.co/n1WhrLG/Screen-Shot-2019-12-29-at-18-31-10.png" align="center">
+<img src="https://i.ibb.co/6PhCBGT/Screen-Shot-2020-01-01-at-20-24-01.png" align="center">
 
 ### Introduction:
 Implementation of a peer to peer distributed payment system that can be integrated to one of the Intuit products.
