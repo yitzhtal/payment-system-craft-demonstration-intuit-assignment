@@ -55,7 +55,7 @@ public class RESTPaymentController {
         }
 
         logger.info("createPayment() - verifying the payment amount is valid");
-        if(!restPaymentControllerUtils.isStringContainsOnlyNumbers(amount) && restPaymentControllerUtils.isBetweenRange(lowerBound, upperBound, amount)) {
+        if(!restPaymentControllerUtils.isStringContainsOnlyNumbers(amount) && !restPaymentControllerUtils.isBetweenRange(lowerBound, upperBound, amount)) {
             return ResponseEntity.badRequest().body("The payment amount you entered is not valid.");
 
         }
