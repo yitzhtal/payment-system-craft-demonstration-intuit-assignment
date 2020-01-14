@@ -22,7 +22,7 @@ then
         docker rm mysql57
     fi
     # run your container
-    docker run --name mysql57 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=talitz -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=payment-service -d mysql/mysql-server:5.7
+    docker run --name mysql57 -p 3360:3360 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=talitz -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=payment-service -d mysql/mysql-server:5.7
     docker ps
     docker logs mysql57
     echo "Finished successfully"
