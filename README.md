@@ -29,7 +29,7 @@ Please <b>strictly</b> follow each step of the following:
 4) Run the RabbitMQ Message queue first (provide your root password):</br> ```sudo ./run-rabbitmq-with-mysql.sh```.</br>
 
 You can install 'MySQLWorkbench' and verify the database connection with the following details:
-- Hostname: localhost; port 3306.
+- Hostname: localhost; port 3360.
 - user name and password are talitz;1234.
 
 5) Run the Risk Engine Service: ```sudo ./run-risk-engine.sh```.
@@ -49,7 +49,7 @@ View the results in two ways:
 
 <img src="https://i.ibb.co/cYNwHHG/Screen-Shot-2020-01-01-at-20-18-13.png" align="center" height="298" width="988" ><br/>
 
-- In 'MySQLWorkbench' (or any other SQL monitoring tool), after achieving database connection (localhost:3306;talitz;1234):
+- In 'MySQLWorkbench' (or any other SQL monitoring tool), after achieving database connection (localhost:3360;talitz;1234):
 
 <img src="https://i.ibb.co/GpNLvNq/Screen-Shot-2020-01-01-at-20-15-08.png" align="center" height="218" width="988" ><br/>
 
