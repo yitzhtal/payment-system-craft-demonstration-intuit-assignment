@@ -66,6 +66,7 @@ View the results in two ways:
 
 ### Code Review - Israel
 
+- Running containers with Docker Compose.
 - Rest API design - query params instead of request body, API naming (create-payment)
 - Usage of "controller" for logging + exposure of info level only (LoggingController)
 - Payment amount received and retained as string, validation on arbitrary hard-coded amount
