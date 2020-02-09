@@ -67,14 +67,14 @@ View the results in two ways:
 ### Code Review - Israel
 
 - Running containers with Docker Compose.
-- Rest API design - query params instead of request body, API naming (create-payment)
-- Usage of "controller" for logging + exposure of info level only (LoggingController)
-- Payment amount received and retained as string, validation on arbitrary hard-coded amount
-- Info instead of debug logging
-- Validation in code instead of spring framework
-- Overriding of IDs in controller (why?)
+- Rest API design - query params instead of request body, API naming (create-payment).
+- Usage of "controller" for logging + exposure of info level only (LoggingController).
+- Payment amount received and retained as string, validation on arbitrary hard-coded amount.
+- Info instead of debug logging.
+- Validation in code instead of spring framework.
+- Overriding of IDs in controller (why?).
 - API for returning all payment methods/payees returns hard-coded list of one item instead of accessing the DB.
-- Hard-coded queue instead of using configuration
-- Risk microservice application class registers a callback for message listening (instead of doing it in a separate class)
-- MQ callback not in its own class
-- Spring annotations not used (Initializing bean, message listener)
+- Hard-coded queue instead of using configuration.
+- Risk microservice application class registers a callback for message listening (instead of doing it in a separate class).
+- MQ callback not in its own class.
+- Spring annotations not used (Initializing bean, message listener).
